@@ -1,0 +1,64 @@
+/*
+ * Here is a link to a scss to css converter to check what classes each mixins produce
+ * Link: https://www.sassmeister.com/
+ */
+
+/*
+ * Create classes for margin and padding
+ * for example margin-right, padding-large, margin-horizontal etc.
+ */
+$small : 5px;
+$medium : 10px;
+$large : 15px;
+@each $attr in 'padding' 'margin' {
+  @each $value in '-small' $small, '-medium' $medium, '-large' $large, '' $medium {
+    @each $direction in 'top' 'right' 'bottom' 'left' {
+      .#{$attr}-#{$direction}#{nth($value, 1)} {
+        #{$attr}-#{$direction}: nth($value, 2);
+      }
+    }
+
+    .#{$attr}#{nth($value, 1)} {
+      #{$attr}: nth($value, 2);
+    }
+  }
+
+  @each $value in '-small' $small, '-medium' $medium, '-large' $large, '' $medium {
+    .#{$attr}-horizontal#{nth($value, 1)} {
+      #{$attr}-left: nth($value, 2);
+      #{$attr}-right: nth($value, 2);
+    }
+
+    .#{$attr}-vertical#{nth($value, 1)} {
+      #{$attr}-top: nth($value, 2);
+      #{$attr}-bottom: nth($value, 2);
+    }
+  }
+}
+
+/*
+ * Create classes for width and height
+ * for example full-width and full-width-mobile
+ */
+
+.full {
+  @each $dimension in 'width' 'height' {
+    &-#{$dimension} {
+      #{$dimension}: 100%;
+    }
+  }
+}
+
+@media (max-width: 51rem) {
+  .full {
+    @each $dimension in 'width' 'height' {
+      &-#{$dimension}-mobile {
+        #{$dimension}: 100%;
+      }
+    }
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}

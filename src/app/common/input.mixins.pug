@@ -1,0 +1,70 @@
+mixin form-group(field, errs)
+  - fieldName = field
+  - field = `${formName}.controls.${field}`
+  - condition = `! errCondition(${field}, ${formName})`
+  .form-group.has-feedback([class.has-error]=condition, [class.has-warning]=`conflicts?.${fieldName}`)
+    block
+    - errs = errs || {}
+    - pre = preErrMsg || 'Please enter'
+    - prettyFieldName = fieldName.replace(/([A-Z])/g, ' $1')
+    - prettyFieldName = prettyFieldName.charAt(0).toUpperCase() + prettyFieldName.slice(1)
+    - errs.required = errs.required || `${pre} ${prettyFieldName}`
+    each errKey in Object.keys(errs)
+      if errKey === '*' || errKey === 'any'
+        - errCondition = condition
+      else
+        - errCondition = `${condition} && ${field}.errors?.${errKey}`
+      small(*ngIf!=errCondition)
+        | #{errs[errKey]}
+        br
+    small(*ngIf!=`conflicts?.${fieldName}`) #{errs['conflict'] || `${prettyFieldName} has conflict`}
+
+mixin submit-button(text, spinCondition, addPristine)
+  - spinCondition = spinCondition || 'gettingData'
+  - addPristine = addPristine || true
+  - errCondition = `!${formName}.valid`
+  if addPristine == true
+    - errCondition += ` || ${formName}.pristine`
+  button.btn.btn-primary.btn-block#submit(type='submit',
+  [disabled]=`!${formName}.valid || ${formName}.pristine`)&attributes(attributes)
+    span([hidden]=`! ${spinCondition}`)
+      i.fa.fa-spinner.fa-pulse
+    |  #{text}
+
+mixin input(name, placeholder, label, type)
+  - label = label || name.replace(/([A-Z])/g, ' $1')
+  if name.includes("email") || name.includes("Email")
+    - type = type || "email"
+  if name.includes("password") || name.includes("Password")
+    - type = type || "password"
+  else
+    - type = type || "text"
+  label.label-color(for=name)
+    | #{label}
+  input.form-control(type=type, name=name, formControlName=name, placeholder=placeholder)
+  span.glyphicon.glyphicon-warning-sign.form-control-feedback(*ngIf=`conflicts?.${name}`)
+
+mixin textarea(name, placeholder, label, type)
+  - label = label || name.replace(/([A-Z])/g, ' $1')
+  if name.includes("email") || name.includes("Email")
+    - type = type || "email"
+  if name.includes("password") || name.includes("Password")
+    - type = type || "password"
+  else
+    - type = type || "text"
+  label.label-color(for=name)
+    | #{label}
+  textarea.form-control.custom-textarea-class(type=type, name=name, formControlName=name, placeholder=placeholder)&attributes(attributes)
+
+mixin input-without-label(name, type, placeholder)
+  - prettyName = name.replace(/([A-Z])/g, ' $1')
+  - prettyName = prettyName.charAt(0).toUpperCase() + prettyName.slice(1)
+  - placeholder = placeholder || prettyName
+  if name.includes("email") || name.includes("Email")
+    - type = type || "email"
+  if name.includes("password") || name.includes("Password")
+    - type = type || "password"
+  else
+    - type = type || "text"
+  input.form-control.capitalize-placeholder(placeholder=placeholder, type=type, name=name, formControlName=name)
+

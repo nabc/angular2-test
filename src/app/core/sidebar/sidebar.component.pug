@@ -1,0 +1,12 @@
+#wrapper([class.toggled]='toggleSideBar && showSideBar', [class.initial]='!showSideBar')
+  #sidebar-wrapper(*ngIf='showSideBar')
+    ul.sidebar-nav.full-width
+      li.sidebar-brand
+        img.m-t-8.logo(src='/assets/img/part-logo@3x.png')
+      li.menu
+        p MENU
+      li.pointer(routerLink="/test" routerLinkActive="active-item")
+        a Test
+      li.pointer((click)='logout()')
+        a#logout Logout
+  ng-content

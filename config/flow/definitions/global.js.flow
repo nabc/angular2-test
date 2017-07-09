@@ -1,0 +1,20 @@
+declare var ENV: string;
+declare var HMR: boolean;
+declare var System: SystemJS;
+declare var API_URL: string;
+declare var TOKEN_NAME: string;
+
+interface SystemJS {
+  import: (path?: string) => Promise<any>;
+}
+
+interface  GlobalEnvironment {
+  ENV: string;
+  HMR: boolean;
+  API_URL: string;
+  TOKEN_NAME: string;
+  System: SystemJS;
+  SystemJS: SystemJS;
+}
+
+interface Global extends GlobalEnvironment {}

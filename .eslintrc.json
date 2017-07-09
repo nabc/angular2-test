@@ -1,0 +1,46 @@
+{
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true
+  },
+  "parser": "babel-eslint",
+  "plugins": [
+    "flowtype"
+  ],
+  "extends": "eslint:recommended",
+  "globals": {
+    "TOKEN_NAME": false,
+    "API_URL": false,
+    "ENV": false,
+    "moment": false,
+    "_": false
+  },
+  "rules": {
+    "no-useless-escape": [
+      "warn"
+    ],
+    "no-unused-vars": [
+      "warn"
+    ],
+    "no-console": [
+      "warn"
+    ],
+    "indent": [
+      "warn",
+      "tab"
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "quotes": [
+      "warn",
+      "single"
+    ],
+    "semi": [
+      "warn",
+      "always"
+    ]
+  }
+}

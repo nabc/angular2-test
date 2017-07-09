@@ -1,0 +1,14 @@
+[include]
+<PROJECT_ROOT>/src/.*
+
+[ignore]
+
+[libs]
+# Custom definitions
+config/flow/definitions/
+
+[options]
+module.use_strict=true
+
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
