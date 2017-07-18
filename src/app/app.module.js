@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
 import {
 	NgModule,
 	ApplicationRef
@@ -16,6 +17,7 @@ import { ENV_PROVIDERS } from './environment';
 
 // App is our top level component
 import { AppComponent } from './app.component';
+import  { FirstComponent } from './first/first.component';
 
 import {CoreModule} from './core/core.module';
 
@@ -29,13 +31,14 @@ import '../styles/styles.scss';
 @NgModule({
 	bootstrap: [ AppComponent ],
 	declarations: [
-		AppComponent,
+		AppComponent,FirstComponent,
 	],
 	/**
    * Import Angular's modules.
    */
 	imports: [
 		BrowserModule,
+    FormsModule,
 		AppRoutingModule,
 		CoreModule.forRoot({}),
 	],

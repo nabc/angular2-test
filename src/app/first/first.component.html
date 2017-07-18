@@ -1,0 +1,19 @@
+
+<div class="container">
+  <div class="row" >
+    <div class="col-xs-6 col-xs-offset-3 ">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h4>
+            First Angular Code!!
+          </h4>
+        </div>
+        <div class="panel-body">
+          <label>Type Your Name:</label>
+          <input type="text" [(ngModel)]="inputText" #ctrl="ngModel" autofocus required>
+          <p *ngIf="ctrl.valid">Hello {{inputText}} from AngularJS!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
