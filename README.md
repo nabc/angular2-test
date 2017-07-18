@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ### Quick start
 **Make sure you have Node version >= 5.0 and yarn >= 3**
 
@@ -89,3 +90,6 @@ For example to use Bootstrap as an external stylesheet:
 2) `yarn add` the version of Boostrap you want.
 3) In `styles.scss` add `@import 'bootstrap/scss/bootstrap.scss';`
 4) In `src/app/app.module.js` add underneath the other import statements: `import '../styles/styles.scss';`
+=======
+# angular2-test
+>>>>>>> 8113691f2dba588c3ec3ccb4bf55e61e9c48d42a
